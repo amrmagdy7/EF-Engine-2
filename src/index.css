@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, [data-theme="dark"], .dark *, [data-theme="dark"] *));
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  
+  :root.dark,
+  [data-theme="dark"] {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 transition-colors duration-300;
+  }
+
+  .dark body,
+  [data-theme="dark"] body {
+    @apply bg-slate-950 text-slate-100;
+  }
+}

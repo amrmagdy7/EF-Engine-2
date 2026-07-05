@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Executive Function Engine</string>
+    <string name="title_activity_main">Executive Function Engine</string>
+    <string name="package_name">com.executivefunction.engine</string>
+    <string name="custom_url_scheme">com.executivefunction.engine</string>
+</resources>

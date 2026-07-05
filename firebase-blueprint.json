@@ -1,0 +1,97 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string", "format": "uri" },
+        "role": { "type": "string", "enum": ["admin", "user"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "BrainDumpItem": {
+      "title": "Brain Dump Item",
+      "description": "A processed brain dump item (task, project, note, life area, or habit)",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "parentId": { "type": "string", "description": "ID of the parent Life Area or Project" },
+        "type": { "type": "string", "enum": ["task", "project", "note", "life_area", "habit"] },
+        "title": { "type": "string" },
+        "life_area": { "type": "string" },
+        "original_intent": { "type": "string" },
+        "energy_required": { "type": "string", "enum": ["low", "medium", "high"] },
+        "first_step": { "type": "string" },
+        "micro_steps": { "type": "array", "items": { "type": "string" } },
+        "subtasks": { 
+          "type": "array", 
+          "items": { 
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "title": { "type": "string" },
+              "completed": { "type": "boolean" }
+            }
+          }
+        },
+        "estimated_time_minutes": { "type": "number" },
+        "executive_function_tip": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "completed": { "type": "boolean" },
+        "deadline": { "type": "string", "format": "date-time" },
+        "position": { "type": "number" },
+        "habit_config": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "enum": ["boolean", "numeric"] },
+            "goal": { "type": "number" },
+            "unit": { "type": "string" }
+          }
+        },
+        "habit_logs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": { "type": "string", "format": "date" },
+              "value": { "type": ["number", "boolean"] }
+            }
+          }
+        }
+      },
+      "required": ["userId", "type", "title", "createdAt"]
+    },
+    "TimerSession": {
+      "title": "Timer Session",
+      "description": "A record of a completed timer session",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "taskId": { "type": "string" },
+        "taskTitle": { "type": "string" },
+        "durationSeconds": { "type": "number" },
+        "completedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "durationSeconds", "completedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/items/{itemId}": {
+      "schema": "BrainDumpItem",
+      "description": "Processed brain dump items"
+    },
+    "/timer_sessions/{sessionId}": {
+      "schema": "TimerSession",
+      "description": "Completed timer sessions"
+    }
+  }
+}

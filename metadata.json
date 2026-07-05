@@ -1,0 +1,5 @@
+{
+  "name": "Executive Function Engine",
+  "description": "A Second Brain tool for ADHD brains to transform brain dumps into actionable micro-steps.",
+  "requestFramePermissions": ["notifications"]
+}

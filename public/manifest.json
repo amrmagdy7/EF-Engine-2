@@ -1,0 +1,17 @@
+{
+  "name": "Executive Function Engine",
+  "short_name": "Exec Engine",
+  "description": "A Second Brain tool for ADHD brains to transform brain dumps into actionable micro-steps.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
